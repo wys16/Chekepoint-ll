@@ -2,6 +2,7 @@
 let emailLogin = document.querySelector("#inputEmail");
 let passwordLogin = document.querySelector("#inputPassword");
 let botaoAcessarLogin = document.querySelector("#botaoAcessarLogin");
+console.log(botaoAcessarLogin)
 
 /* Altera as caracteristicas do botão acessar */
 botaoAcessarLogin.style.backgroundColor = "#979292A1"
