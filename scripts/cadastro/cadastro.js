@@ -16,15 +16,14 @@ let minfirtsNameCaracteres = 0;
 let minlastNameCaracteres = 0;
 let  firtsNameIsValid = false;
 
-let usuario = { 
-    firstName:firtsName.value,
-    lastName:lastName.value,
-    email:email.value,
-    password:password.value
-}
-
 function cadastrar (){
-    console.log()
+    let usuario = { 
+        firstName:firtsName.value,
+        lastName:lastName.value,
+        email:email.value,
+        password:password.value
+    }
+    
 fetch(`${baseUrlApi()}/users`,{
     method:"POST",
     headers:{

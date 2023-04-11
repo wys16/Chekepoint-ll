@@ -20,8 +20,8 @@
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
+  <script src="/scripts/validacoes/utils.js"defer></script>
+  <script src="/scripts/tarefas/tarefas.js"defer></script>
   <title>To-Do App</title>
 </head>
 
@@ -32,7 +32,7 @@
     </nav>
 
     <div class="user-info">
-      <p>Nome usuário</p>
+      <p id = "nomeUsuario">Nome usuário</p>
       <div class="user-image"></div>
       <p id="closeApp">Finalizar sessão</i>
       </p>
@@ -50,7 +50,7 @@
 
 
   <ul class="tarefas-pendentes">
-    <!-- <div id="skeleton"> -->
+  
     <div>
       <li class="tarefa">
         <div class="not-done"></div>

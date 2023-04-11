@@ -14,66 +14,95 @@ let passwordIsValid = false;
 let minPasswordCaracteres = 4;
 
 /* Adiciona um evento de click ao botão de acessar */
-botaoAcessarLogin.addEventListener("click", async function (evento) {
+// botaoAcessarLogin.addEventListener("click", async function (evento) {
 
-    //Busca os valores atualizados dos inputs
-    emailLogin = document.querySelector("#inputEmail");
-    passwordLogin = document.querySelector("#inputPassword");
+//     //Busca os valores atualizados dos inputs
+//     emailLogin = document.querySelector("#inputEmail");
+//     passwordLogin = document.querySelector("#inputPassword");
 
 
-    if (validaLogin()) {
+//     if (validaLogin()) {
 
-        evento.preventDefault();
+//         evento.preventDefault();
 
-        /* Normalizando os inputs da tela de login */
-        emailLogin = normalizaStringUsandoTrim(emailLogin.value);
-        passwordLogin = normalizaStringUsandoTrim(passwordLogin.value);
+//         /* Normalizando os inputs da tela de login */
+//         emailLogin = normalizaStringUsandoTrim(emailLogin.value);
+//         passwordLogin = normalizaStringUsandoTrim(passwordLogin.value);
 
-        let usuarioJs = {
-            email: emailLogin,
-            password: passwordLogin
-        }
+//         let usuarioJs = {
+//             email: emailLogin,
+//             password: passwordLogin
+//         }
 
-        let usuarioJson = JSON.stringify(usuarioJs);
-        loginApi(usuarioJson);
+//         let usuarioJson = JSON.stringify(usuarioJs);
+//         loginApi(usuarioJson);
 
-    } else {
-        console.log("Login inválido");
+//     } else {
+//         console.log("Login inválido");
+//     }
+
+// });
+botaoAcessarLogin.addEventListener("click",(e)=>{
+e.preventDefault()
+loginApi();
+})
+
+function loginApi(){
+    let usuario = { 
+    email: emailLogin.value,
+    password:passwordLogin.value
     }
+    
+fetch(`${baseUrlApi()}/users/login`,{
+    method:"POST",
+    headers:{
+        "Content-Type": "application/json"
+    },
+    body:JSON.stringify(usuario),
 
-});
-
-function loginApi(usuarioJson) {
-
-    //init: objeto JS de configuração da requisição
-    let configRequest = {
-    metodo: "POST",
-        body: usuarioJson, // É obrigatorio essa info ser JSON
-        headers: { //objeto JS e não JSON
-            "Content-Type": "application/json"
-        }
-    }
-    fetch(`${baseUrlApi()}/users/login`, configRequest)
-        .then(
-            function (retorna) {
-                if (retorna.status == 201) {
-                    return retorna.json();
-                } else {
-                    throw retorna;
-                }
-            }
-        )
-        .then(
-            function (data) {
-                loginSucesso(data)
-            }
-        )
-        .catch(
-            function (erro) {
-                loginErro(erro)
-            }
-        );
+}).then((response)=> {
+    console.log(response)
+return response.json()
 }
+).then((data)=>{
+    console.log(data)
+    console.log(data.jwt)
+    localStorage.setItem("jwt",data.jwt)
+    window.location.href="tarefas.html"
+})
+}
+
+// function loginApi(usuarioJson) {
+
+//     //init: objeto JS de configuração da requisição
+//     let configRequest = {
+//     metodo: "POST",
+//         body: usuarioJson, // É obrigatorio essa info ser JSON
+//         headers: { //objeto JS e não JSON
+//             "Content-Type": "application/json"
+//         }
+//     }
+//     fetch(`${baseUrlApi()}/users/login`, configRequest)
+//         .then(
+//             function (retorna) {
+//                 if (retorna.status == 201) {
+//                     return retorna.json();
+//                 } else {
+//                     throw retorna;
+//                 }
+//             }
+//         )
+//         .then(
+//             function (data) {
+//                 loginSucesso(data)
+//             }
+//         )
+//         .catch(
+//             function (erro) {
+//                 loginErro(erro)
+//             }
+//         );
+// }
 
 function loginSucesso(token) {
     console.log(token);
