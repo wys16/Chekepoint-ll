@@ -67,42 +67,15 @@ return response.json()
 ).then((data)=>{
     console.log(data)
     console.log(data.jwt)
+    
+   if(data){
     localStorage.setItem("jwt",data.jwt)
     window.location.href="tarefas.html"
+}
 })
 }
 
-// function loginApi(usuarioJson) {
 
-//     //init: objeto JS de configuração da requisição
-//     let configRequest = {
-//     metodo: "POST",
-//         body: usuarioJson, // É obrigatorio essa info ser JSON
-//         headers: { //objeto JS e não JSON
-//             "Content-Type": "application/json"
-//         }
-//     }
-//     fetch(`${baseUrlApi()}/users/login`, configRequest)
-//         .then(
-//             function (retorna) {
-//                 if (retorna.status == 201) {
-//                     return retorna.json();
-//                 } else {
-//                     throw retorna;
-//                 }
-//             }
-//         )
-//         .then(
-//             function (data) {
-//                 loginSucesso(data)
-//             }
-//         )
-//         .catch(
-//             function (erro) {
-//                 loginErro(erro)
-//             }
-//         );
-// }
 
 function loginSucesso(token) {
     console.log(token);
