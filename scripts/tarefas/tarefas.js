@@ -4,6 +4,7 @@ let fechaApp =document.querySelector("#closeApp");
 let newTask =document.querySelector("#novaTarefa");
 let buttonCreateTask =document.querySelector("#buttonCreateTask");
 let tarefasPendente 
+let  statusData = data.status;
 function buscarUsuario(){ 
     console.log(localStorage.getItem("jwt"))
 fetch(`${baseUrlApi()}/users/getMe`,{
@@ -70,8 +71,20 @@ buttonCreateTask.addEventListener("click",(event)=>{
         console.log(data)
 //    tarefasPendente=data
     console.log(data[0].description)
-    })
+    data.map(dado => {
+        // capturo os dados do status da tarefa, descrição e id da tarefa retornado pela API
+        let statusTarefa = dado.completed;
+        let description = dado.description;
+        let id = dado.id;
+
+        // crio uma LI referente a tarefa
+        const liTarefa = createElement(id, description, statusTarefa);
+
+        // defino em qual lista ela vai ser adicionada
+        if (statusTarefa) {
+            listaFinalizada.appendChild(liTarefa);
+        } else {
+            listaPendente.appendChild(liTarefa);
+        }})
     }
-    buscarTarefas();
-    console.log(tarefasPendente)
-    
+    )}

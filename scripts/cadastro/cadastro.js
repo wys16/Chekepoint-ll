@@ -42,16 +42,14 @@ return response.json()
     
 }
 
-/* Verifica se ambas as informações do formulário de login foram validadas */
+
 function validaCadastro() {
     if (emailIsValid&&passwordIsValid&&lastNameIsValid&&firtsNameIsValid&&passwordRepeat) {
-        /* Ativa o botão de acesso novamente e retorna suas propriedades */
         singUp.style.backgroundColor = "#7898FF"
         singUp.innerText = "Acessar";
         singUp.removeAttribute("disabled");
         return true;
     } else {
-        /* Desabilita o botão de acesso e troca suas caracteristicas*/
         singUp.style.backgroundColor = "#979292A1"
         singUp.innerText = "Bloqueado";
         singUp.setAttribute("disabled", true);
@@ -81,20 +79,17 @@ else{
 }
 )
 
-/* Validações no Input da SENHA */
+
 password.addEventListener("keyup", () => {
-    //Busca os valores atualizados dos inputs
-    let passwordValidacao = document.querySelector("#passwordSingUp");
-    /* Alterandoo texto do Small - Verifica se o campo é nulo/vazio */
-    if (password.value.length <= minPasswordCaracteres) {
+        let passwordValidacao = document.querySelector("#passwordSingUp");
+        if (password.value.length <= minPasswordCaracteres) {
         passwordValidacao.innerText = `Faltam ${(minPasswordCaracteres + 1) - password.value.length} caracteres`;
-        //Troca a cor da borda do input
+    
         password.style.border = "2px solid #E9554EBB"
         passwordIsValid = false;
 
     } else {
         passwordValidacao.innerText = "";
-        //Troca a cor da borda do input
         password.style.border = "2px solid transparent"
         passwordIsValid = true;
     }
@@ -103,18 +98,14 @@ password.addEventListener("keyup", () => {
 
 
 firtsName.addEventListener("keyup", () => {
-    //Busca os valores atualizados dos inputs
     let firtsNameValidacao = document.querySelector("#nameSingUp");
-    /* Alterandoo texto do Small - Verifica se o campo é nulo/vazio */
     if (firtsName.value.length ==  minfirtsNameCaracteres) {
         firtsNameValidacao.innerText = ` Este campo é obrigatorio`;
-        //Troca a cor da borda do input
         firtsName.style.border = "2px solid #E9554EBB"
         firtsNameIsValid = false;
 
     } else {
         firtsNameValidacao.innerText = "";
-        //Troca a cor da borda do input
         firtsName.style.border = "2px solid transparent"
         firtsNameIsValid = true;
     }
@@ -122,18 +113,14 @@ firtsName.addEventListener("keyup", () => {
 });
 
 lastName.addEventListener("keyup", () => {
-    //Busca os valores atualizados dos inputs
     let lastNameValidacao = document.querySelector("#lastnameSingUp");
-    /* Alterandoo texto do Small - Verifica se o campo é nulo/vazio */
     if (lastName.value.length ==  minlastNameCaracteres ) {
         lastNameValidacao.innerText = ` Este campo é obrigatorio`;
-        //Troca a cor da borda do input
         lastName.style.border = "2px solid #E9554EBB"
         lastNameIsValid = false;
 
     } else {
         lastNameValidacao.innerText = "";
-        //Troca a cor da borda do input
         lastName.style.border = "2px solid transparent"
         lastNameIsValid = true;
     }
@@ -145,7 +132,6 @@ lastName.addEventListener("keyup", () => {
 passwordRepeat.addEventListener("keyup", () => {
     let senhaDigitada = normalizaStringUsandoTrim(password.value)
     let senhaArmazenada=normalizaStringUsandoTrim(passwordRepeat.value) 
-    /* Verifica se a senha tem pelo menos minPasswordCaracteres caracteres */
     if (senhaDigitada.length < minPasswordCaracteres) {
         passwordRepeatIsValid.innerText = `A senha deve ter pelo menos ${minPasswordCaracteres} caracteres`;
         password.style.border = "2px solid #E9554EBB";
