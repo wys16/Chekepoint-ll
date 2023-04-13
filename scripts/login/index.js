@@ -40,7 +40,7 @@ return response.json()
     console.log(data.jwt)
     
  
-})
+}).catch(error => {console.log(error)}) 
 }
 
 

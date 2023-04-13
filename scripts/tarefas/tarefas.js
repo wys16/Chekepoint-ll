@@ -22,7 +22,7 @@ return response.json()
     console.log(data)
 console.log(data.firstName)
 firstName.innerText= `${data.firstName} ${data.lastName}`
-})
+}).catch(error => {console.log(error)}) 
 }
 buscarUsuario();
 
@@ -47,7 +47,7 @@ return response.json()
 ).then((data)=>{
 console.log(data)
 
-})
+}).catch(error => {console.log(error)}) 
 }
 buttonCreateTask.addEventListener("click",(event)=>{
     event.preventDefault()
@@ -70,8 +70,8 @@ buttonCreateTask.addEventListener("click",(event)=>{
     ).then((data)=>{
         console.log(data)
    
-    }
-    )}
+    }).catch(error => {console.log(error)}) 
+}
 
    function buscarTarefasID(id){
     fetch(`${baseUrlApi()}/tasks/${id}`,{
@@ -90,7 +90,8 @@ buttonCreateTask.addEventListener("click",(event)=>{
    
     
 
-   })}
+   }).catch(error => {console.log(error)}) 
+}
 
    function deleteTarefasID(id){
     fetch(`${baseUrlApi()}/tasks/${id}`,{
@@ -109,7 +110,8 @@ buttonCreateTask.addEventListener("click",(event)=>{
    
     
 
-   })}
+   }).catch(error => {console.log(error)}) 
+}
 
 
    function deleteTarefasID(id){
