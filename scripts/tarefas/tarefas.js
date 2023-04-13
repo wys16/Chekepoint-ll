@@ -69,22 +69,90 @@ buttonCreateTask.addEventListener("click",(event)=>{
     }
     ).then((data)=>{
         console.log(data)
-//    tarefasPendente=data
-    console.log(data[0].description)
-    data.map(dado => {
-        // capturo os dados do status da tarefa, descrição e id da tarefa retornado pela API
-        let statusTarefa = dado.completed;
-        let description = dado.description;
-        let id = dado.id;
-
-        // crio uma LI referente a tarefa
-        const liTarefa = createElement(id, description, statusTarefa);
-
-        // defino em qual lista ela vai ser adicionada
-        if (statusTarefa) {
-            listaFinalizada.appendChild(liTarefa);
-        } else {
-            listaPendente.appendChild(liTarefa);
-        }})
+   
     }
     )}
+
+   function buscarTarefasID(id){
+    fetch(`${baseUrlApi()}/tasks/${id}`,{
+        method:"GET",
+        headers:{
+            "Content-Type": "application/json",
+            authorization:`${localStorage.getItem("jwt")}`
+        },
+    
+    }).then((response)=> {
+        console.log(response)
+    return response.json()
+    }
+    ).then((data)=>{
+        console.log(data)
+   
+    
+
+   })}
+
+   function deleteTarefasID(id){
+    fetch(`${baseUrlApi()}/tasks/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type": "application/json",
+            authorization:`${localStorage.getItem("jwt")}`
+        },
+    
+    }).then((response)=> {
+        console.log(response)
+    return response.json()
+    }
+    ).then((data)=>{
+        console.log(data)
+   
+    
+
+   })}
+
+
+   function deleteTarefasID(id){
+    fetch(`${baseUrlApi()}/tasks/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type": "application/json",
+            authorization:`${localStorage.getItem("jwt")}`
+        },
+    
+    }).then((response)=> {
+        console.log(response)
+    return response.json()
+    }
+    ).then((data)=>{
+        console.log(data)
+   
+    
+
+   }).catch(error => {console.log(error)}) 
+}
+
+function atualizarTarefas(id,description,completed){
+    let task = { 
+        description: description,
+        completed: completed,
+    }
+    fetch(`${baseUrlApi()}/tasks/${id}`,{
+        method:"PUT",
+        headers:{
+            "Content-Type": "application/json",
+            authorization:`${localStorage.getItem("jwt")}`
+        },
+        
+        body:JSON.stringify(task),
+    }).then((response)=> {
+        console.log(response)
+    return response.json()
+    }
+    ).then((data)=>{
+        console.log(data)
+   
+    
+
+   }).catch(error => {console.log(error)}) 
+}
